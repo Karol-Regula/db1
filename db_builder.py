@@ -5,23 +5,16 @@ f="discobandit.db"
 db = sqlite3.connect(f) #open if f exists, otherwise create
 c = db.cursor()    #facilitate db ops
 
+
 #==========================================================
 #INSERT YOUR POPULATE CODE IN THIS ZONE
 
 students = open("peeps.csv") #open csv file
 d=csv.DictReader(students) #read csv file into dictionary
 
-c.execute("CREATE TABLE students (name TEXT, id INTEGER, age INTEGER);") #create table
+c.execute("CREATE TABLE students (id INTEGER, name TEXT, age INTEGER);") #create table
 for k in d:
-    c.execute("INSERT INTO students VALUES('" + k['name'] + "'," + k['id'] + "," + k['age'] + ")") #add data to table
-    
-for row in c.execute('SELECT * FROM students'):
-        print row #print data from table
-        #data printed with 'u' in front, however when the table is inpected in sqlite3 it is fine
-# print (c.execute("SELECT * FROM students;")) #this seems to be useless
-#c.execute(q)    #run SQL query #I did this separately for each line
-
-
+    c.execute("INSERT INTO students VALUES(" + k['id'] + ",'" + k['name'] + "'," + k['age'] + ");") #add data to table
 
 '''
 
@@ -33,5 +26,15 @@ c.execute(q)
 #==========================================================
 db.commit() #save changes
 db.close()  #close database
+
+
+'''
+testing protocol:
+$ sqlite3 discobandit.db
+$ .mode column
+$ .header on
+$ SELECT * from students;
+$ SELECT * from courses;
+'''
 
 
