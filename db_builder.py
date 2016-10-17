@@ -36,5 +36,3 @@ $ .header on
 $ SELECT * from students;
 $ SELECT * from courses;
 '''
-
-
