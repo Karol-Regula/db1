@@ -23,11 +23,12 @@ c.execute("CREATE TABLE courses (code TEXT, mark INTEGER, id INTEGER);")
 for k in d2:
 	c.execute("INSERT INTO courses VALUES('" + k['code'] + "'," + k['mark'] + "," + k['id'] + ");")
 
+'''
 cmd = "SELECT * FROM courses WHERE mark = 80"
 sel = c.execute(cmd)
 for record in sel:
     print record
-
+'''
 #==========================================================
 db.commit() #save changes
 db.close()  #close database
